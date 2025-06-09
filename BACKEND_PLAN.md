@@ -1,5 +1,27 @@
 # Plano Backend - WatchMe (NestJS + TMDb)
 
+## Checklist de Implementação
+
+- [x] Instalar dependências principais e de desenvolvimento
+- [x] Configurar Prisma e banco de dados (PostgreSQL via Docker Compose)
+- [x] Gerar e configurar Prisma Client no padrão
+- [x] Criar módulos: `auth`, `user`, `movies`, `observability`, `messaging`
+- [x] Implementar autenticação JWT (registro, login, proteção de rotas)
+- [x] Implementar CRUD de usuários
+- [x] Integrar endpoints com TMDb usando `axios`
+- [x] Implementar logs estruturados (Winston)
+- [x] Instrumentar código com OpenTelemetry (Jaeger via Docker Compose)
+- [x] Configurar mensageria (Kafka via Docker Compose)
+- [x] Configurar Grafana para métricas (via Docker Compose)
+- [x] Versionamento no Git
+- [x] Scripts utilitários para infraestrutura (rebuild:infra)
+- [ ] Implementar endpoints de health check e métricas
+- [ ] Implementar testes unitários, integração e carga
+- [ ] Configurar deploy serverless/containerizado
+- [ ] Provisionar infraestrutura com IaC
+- [ ] Configurar CI/CD
+- [ ] Documentação da API
+
 ## 1. Objetivo
 Backend simples em NestJS, com autenticação JWT, integração com a API do TMDb e persistência de usuários.
 
