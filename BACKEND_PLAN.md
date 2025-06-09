@@ -15,12 +15,12 @@
 - [x] Configurar Grafana para métricas (via Docker Compose)
 - [x] Versionamento no Git
 - [x] Scripts utilitários para infraestrutura (rebuild:infra)
-- [ ] Implementar endpoints de health check e métricas
-- [ ] Implementar testes unitários, integração e carga
-- [ ] Configurar deploy serverless/containerizado
-- [ ] Provisionar infraestrutura com IaC
-- [ ] Configurar CI/CD
-- [ ] Documentação da API
+- [x] Implementar endpoints de health check e métricas
+- [x] Implementar testes unitários, integração e carga
+- [x] Configurar deploy serverless/containerizado
+- [x] Provisionar infraestrutura com IaC
+- [x] Configurar CI/CD
+- [x] Documentação da API
 
 ## 1. Objetivo
 Backend simples em NestJS, com autenticação JWT, integração com a API do TMDb e persistência de usuários.
@@ -100,26 +100,3 @@ services:
 volumes:
   pgdata:
 ```
-
-## 8. Passos de Implementação
-1. Instalar dependências
-2. Configurar Prisma e banco de dados
-3. Criar módulos: `auth`, `user`, `movies`, `observability`, `messaging`
-4. Implementar autenticação JWT
-5. Integrar endpoints com TMDb usando `axios`
-6. Implementar logs estruturados
-7. Instrumentar código com OpenTelemetry
-8. Implementar testes unitários, integração e carga
-9. Configurar deploy serverless/containerizado
-10. Provisionar infraestrutura com IaC
-11. Configurar CI/CD
-12. Documentação da API
-
-## 9. Observações
-- Código limpo, modular e documentado
-- Tratamento de erros essenciais
-- Testes unitários, integração e carga
-- Observabilidade e rastreabilidade
-- Pronto para produção e escalabilidade
-
---- 
