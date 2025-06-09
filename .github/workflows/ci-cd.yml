@@ -1,0 +1,56 @@
+name: CI/CD - Build and Push Docker to ECR
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test-push:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: eu-north-1
+      ECR_REPOSITORY: 820242923650.dkr.ecr.eu-north-1.amazonaws.com/watchme-backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.5
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm run lint || true
+
+      - name: Run tests
+        run: pnpm run test
+
+      - name: Build Docker image
+        run: docker build -t watchme-backend:latest .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        run: aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY
+
+      - name: Tag Docker image
+        run: docker tag watchme-backend:latest $ECR_REPOSITORY:latest
+
+      - name: Push Docker image to ECR
+        run: docker push $ECR_REPOSITORY:latest 
