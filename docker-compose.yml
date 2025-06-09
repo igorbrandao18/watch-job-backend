@@ -48,5 +48,21 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
 
+  app:
+    build: .
+    image: watchme-backend:latest
+    depends_on:
+      - db
+      - jaeger
+      - kafka
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/watchme
+      - JWT_SECRET=sua_jwt_secret
+      - TMDB_API_KEY=sua_tmdb_api_key
+    ports:
+      - '3000:3000'
+
 volumes:
   pgdata: 
