@@ -49,6 +49,11 @@ jobs:
             sleep 2
           done
 
+      - name: Run Prisma migrations
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/watchme
+        run: pnpm exec prisma migrate deploy
+
       - name: Run tests
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/watchme
