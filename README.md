@@ -99,3 +99,6 @@ curl -H "Authorization: Bearer <token>" http://localhost:3000/movies/popular
 ---
 
 Desenvolvido para o desafio técnico. Dúvidas? Consulte o código ou abra uma issue.
+
+
+<!-- Security scan triggered at 2025-09-02 04:08:27 -->
